@@ -1,0 +1,19 @@
+{
+  "name": "JS Test Automation Framework",
+  "version": "1.0.0",
+  "description": "JS Test Automation framework for Web,API and DB",
+  "main": "index.js",
+  "scripts": {
+    "test:api": "npx mocha api_tests --timeout 15000",
+    "test:web": "npx testcafe chrome tests --reporter spec",
+    "test:web:headless": "npx testcafe chrome:headless tests --reporter spec"
+  },
+  "author": "Razvan Vancea",
+  "license": "ISC",
+  "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
+    "mocha": "^10.1.0",
+    "pactum": "^3.2.2",
+    "testcafe": "^2.0.1"
+  }
+}

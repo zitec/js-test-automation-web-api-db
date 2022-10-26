@@ -1,0 +1,11 @@
+{
+  "screenshots": {
+    "path": "screenshots",
+    "takeOnFails": true
+  },
+  "pageLoadTimeout": 30000,
+  "speed": 1,
+  "assertionTimeout": 30000,
+  "selectorTimeout": 30000,
+  "concurrency": 1
+}
