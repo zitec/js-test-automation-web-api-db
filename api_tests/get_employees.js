@@ -1,17 +1,17 @@
 const { spec, request } = require("pactum");
 
-describe("API EMPLOYEES test suite", () => {
+describe("API Test suite", () => {
   let jwt = "";
 
   before(async () => {
-    console.log("before - once, before all tests");
+    console.log("before");
 
     request.setDefaultTimeout(15000);
     request.setBaseUrl("https://qa-practice.herokuapp.com");
   });
 
   beforeEach(async () => {
-    console.log("before each test");
+    console.log("before each");
   });
 
   it("GET specific employee", async () => {
@@ -25,30 +25,33 @@ describe("API EMPLOYEES test suite", () => {
 
     await spec()
       .get("/api/v1/employees/1")
+      // .inspect()
       .expectStatus(200)
       .expectBody(expectResponse);
   });
 
-  it("get JWT", async () => {
+  it("Get JWT test", async () => {
     const USER_REQUEST_CREDS = { username: "admin", password: "admin" };
 
     const resp = await spec()
       .post("/api/v1/simulate/token")
       .withHeaders("Content-Type", "application/json")
       .withBody(USER_REQUEST_CREDS)
-      // .inspect()
+      .stores("token", "[0].token")
       .expectStatus(200);
 
     jwt = resp.body.token;
     console.log(resp.body.token);
   });
 
-  it("get employees with JWT", async () => {
-    await spec()
+  it("Get employees with JWT endpoint test", async () => {
+    const resp = await spec()
       .get("/api/v1/simulate/get/employees")
       .withHeaders("Authorization", "Bearer " + jwt)
       // .inspect()
       .expectStatus(200)
       .expectResponseTime(500);
+
+    console.log(resp.body.token);
   });
 });
